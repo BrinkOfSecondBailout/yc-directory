@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import Image from "next/image"
 import React from 'react'
-import { auth , signOut, signIn } from '@/auth'
+import { auth, signOut, signIn } from '@/auth'
 
-const Navbar = ({ session }) => {
+
+const Navbar = async () => {
+    const session = await auth();
     return (
         <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
             <nav className="flex justify-between items-center">
@@ -25,7 +27,7 @@ const Navbar = ({ session }) => {
                                 }}>
 
                                 <button type="submit">
-                                    
+                                    Logout
                                 </button>
                             </form>
 
