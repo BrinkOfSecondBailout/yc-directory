@@ -1,9 +1,20 @@
+import StartupCard from "@/components/StartupCard";
 import SearchForm from "../../components/SearchForm";
 
 export default async function Home({ searchParams }: {
   searchParams: Promise<{query?: string}>
 }) {
   const query = (await searchParams).query;
+  const posts = [{ 
+    _createdAt: 'Yesterday',
+    views: 55,
+    author: {_id: 1 },
+    _id: 1,
+    description: 'Default description',
+    image: 'https://cdn.redmondpie.com/wp-content/uploads/2024/09/GYWtS_GXoAABfAC-1024x1024.jpeg',
+    category: 'Robots',
+    title: 'We Robots',
+  }];
   return (
       <>
         <section className="pink_container">
@@ -18,6 +29,16 @@ export default async function Home({ searchParams }: {
           <p className="text-30-semibold">
               {query? `Search results for "${query}"` : "All Startups"}
           </p>
+
+          <ul className="mt-7 card_grid">
+            {posts?.length > 0 ? (
+              posts.map((post: StartupCardType) => (
+                <StartupCard key={post?._id} post={post}/>
+              ))
+            ) : (
+              <p className="no-results">No startups found</p>
+            )}
+          </ul>
         </section>
 
       </>
