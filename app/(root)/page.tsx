@@ -6,9 +6,9 @@ export default async function Home({ searchParams }: {
 }) {
   const query = (await searchParams).query;
   const posts = [{ 
-    _createdAt: 'Yesterday',
+    _createdAt: new Date(),
     views: 55,
-    author: {_id: 1 },
+    author: {_id: 1, name: 'Elon Musk' },
     _id: 1,
     description: 'Default description',
     image: 'https://cdn.redmondpie.com/wp-content/uploads/2024/09/GYWtS_GXoAABfAC-1024x1024.jpeg',
