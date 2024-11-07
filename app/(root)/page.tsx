@@ -1,20 +1,14 @@
 import StartupCard from "@/components/StartupCard";
 import SearchForm from "../../components/SearchForm";
+import { client } from "@/sanity/lib/client";
+import { STARTUP_QUERY } from "@/sanity/lib/queries";
 
 export default async function Home({ searchParams }: {
   searchParams: Promise<{query?: string}>
 }) {
   const query = (await searchParams).query;
-  const posts = [{ 
-    _createdAt: new Date(),
-    views: 55,
-    author: {_id: 1, name: 'Elon Musk' },
-    _id: 1,
-    description: 'Default description',
-    image: 'https://cdn.redmondpie.com/wp-content/uploads/2024/09/GYWtS_GXoAABfAC-1024x1024.jpeg',
-    category: 'Robots',
-    title: 'We Robots',
-  }];
+  const posts = await client.fetch(STARTUP_QUERY);
+  console.log(JSON.stringify(posts, null, 2));
   return (
       <>
         <section className="pink_container">
