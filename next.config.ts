@@ -10,8 +10,9 @@ const nextConfig: NextConfig = {
       }
     ]
   },
-  experiemental: {
-    ppr: 'incremental',
+  experimental: {
+    ppr: "incremental",
+    after: true,
   },
   devIndicators: {
     appIsrStatus: true,
